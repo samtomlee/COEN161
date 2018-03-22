@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 4 - Part 2</title>
+	<style>
+		/* classes to change the display of an element */
+		.hiddenDiv {
+			display:none;
+		}
+
+		.visibleDiv {
+			display:inline;
+		}		
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<label>Input #1 <input id="input1" type="text"></label>
+	<label>Input #2 <input id="input2" type="text"></label>
+	<input type="button" value="add">
+	<input type="button" value="subtract">
+	<input type="button" value="multiply">
+	<input type="button" value="divide"> 
+	<div id="resultDiv">Operator: <span id="operator"></span><br>Result:<span id="result"></span><br><input type="button" value="clear"></div>
+	<script>
+
+		var var1 = 0.0;
+		var var2 = 0.0;
+		
+		// automatically sets the result display to none
+		document.getElementById("result").setAttribute("class","hiddenDiv");
+
+		// function to update all of the values everytime an operattion button is pressed
+		function vals(){
+			var val1 = document.getElementById("input1").value;
+			var val2 = document.getElementById("input2").value;
+			var1 = parseInt(val1,10);
+			var2 = parseInt(val2,10);
+		}
+		
+		// function to add the two input values together
+		function add() {
+			vals();
+			document.getElementById("result").setAttribute("class","visibleDiv");
+			document.getElementById("result").innerHTML = var1 + var2;
+			document.getElementById("operator").innerHTML = "addition"
+		}
+
+		// function to subtract the second input from the first input
+		function subtract() {
+			vals();
+			document.getElementById("result").setAttribute("class","visibleDiv");
+			document.getElementById("result").innerHTML = var1 - var2;
+			document.getElementById("operator").innerHTML = "subtraction";
+		}
+
+		// function to multiply the two input values together
+		function multiply() {
+			vals();
+			document.getElementById("result").setAttribute("class","visibleDiv");
+			document.getElementById("result").innerHTML = var1 * var2;
+			document.getElementById("operator").innerHTML = "multiplication";
+		}
+
+		// function to divide the first input by the second input
+		function divide() {
+			vals();
+			document.getElementById("result").setAttribute("class","visibleDiv");
+			document.getElementById("result").innerHTML = Math.floor(var1 / var2);
+			document.getElementById("operator").innerHTML = "division";
+		}
+		
+		// function to clear all the values
+		function cleared() {
+			document.getElementById("input1").value = "";
+			document.getElementById("input2").value = "";
+			document.getElementById("result").setAttribute("class","hiddenDiv");
+			document.getElementById("operator").innerHTML = "";
+		}
+
+		var b = document.querySelectorAll('input[type="button"]');
+		
+		switch(b){
+			case b[0].addEventListener("click",add):
+				break;
+			case b[1].addEventListener("click",subtract):
+				break;
+			case b[2].addEventListener("click",multiply):
+				break;
+			case b[3].addEventListener("click",divide):
+				break;
+			case b[4].addEventListener("click",cleared):
+				break;
+			default:
+		}
+	</script>
+</body>
+</html>
