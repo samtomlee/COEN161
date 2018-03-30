@@ -13,7 +13,7 @@
     <title>Lab 8</title>
   </head>
   <body>
-    <?php 
+    <?php
       // initialize variables
       $newTodo = $newTodoErr = "";
       if (!isset($_SESSION['todoList']))
@@ -30,7 +30,7 @@
               <!-- Form to clear session -->
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <button class="btn btn-secondary float-right" type="submit" name="clear">Clear Session</button>
-		<?php 
+		<?php
 			if(isset($_POST['clear'])){
 				session_unset();
 				session_destroy();
@@ -49,7 +49,7 @@
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
               </div>
-              <div class="invalid-feedback"> 
+              <div class="invalid-feedback">
                 <?php
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
 			if(empty($_POST["todo"]))
@@ -59,13 +59,13 @@
 				if(!preg_match("/^[a-zA-Z0-9 ]*$/", $newTodo))
 					$newTodoErr = "To-do should only contain letters and numbers";
 				else
-					array_push($_SESSION['todoList'], $newTodo);	
+					array_push($_SESSION['todoList'], $newTodo);
 			}
 		}
-		function test_input($data) {  
-			$data = trim($data);  
-			$data = stripslashes($data);  
-			$data = htmlspecialchars($data);  
+		function test_input($data) {
+			$data = trim($data);
+			$data = stripslashes($data);
+			$data = htmlspecialchars($data);
 			return $data;
 		}
 		?>
@@ -76,14 +76,14 @@
         </div>
         <div class="card-body">
           <!-- Loop to create HTML for each to-do  -->
-          <?php 
-	    if(count($_SESSION['todoList']) != 0)	
+          <?php
+	    if(count($_SESSION['todoList']) != 0)
 	     	foreach ($_SESSION['todoList'] as $todo): ?>
             <div class="input-group mb-1">
               <div class="input-group-prepend">
                 <div class="input-group-text">
                   <!-- index of each to-do -->
-                  <?php 
+                  <?php
 			static $index = 1;
 			echo $index++;
 		   ?>
